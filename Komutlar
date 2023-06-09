@@ -1,0 +1,32 @@
+--* komutu tum verılerın gelmesını saglar.
+--Fatura tablosundaki tum kayıtları getıren sorgu;
+SELECT * FROM Fatura
+
+--Mevcut tabloya veri eklemek için kullanılır.
+INSERT INTO
+Fatura
+([Cari_kodu], [Tarih], [Cari_Adi])
+Values
+('151515154151', '2023-02-01', 'Mahmut')
+
+--Mevcut bir sutunda hesaplama yapip tum tabloyu gunceller.
+UPDATE Stok
+SET Yaslanma=DATEDIFF(GUN,Alis_Tarihi,GETDATE())
+
+--Tüm tabloyu siler. 
+DELETE FROM Fatura 
+--Fakat tablodaki verileri tamamen yok etmek için;
+TRUNCATE TABLE Fatura
+
+--Where bir filtredir.
+--Bulmak ıstedıgım cari adının sorgusu;
+SELECT * FROM Fatura
+WHERE Cari_Adi='Ahmet'
+
+--Gormek ıstemedığımız kısıler harıç tum şehırlerı getıren sorgu;
+SELECT * FROM Fatura
+WHERE Cari_Adi  <> 'Ahmet'
+
+--Diger yolu;
+SELECT * FROM Fatura
+WHERE Cari_Adi != 'Ahmet'
