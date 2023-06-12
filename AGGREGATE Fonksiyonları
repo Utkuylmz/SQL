@@ -1,0 +1,28 @@
+/*
+Aggregate fonksiyonları Sum, Count, Min, Max, Avg gibi komutlardır.
+*/
+
+--AS komutu gelecek sütunu adlandırmak için kullanılır.
+--Fatura tablosundaki max değeri getiren sorgu;
+SELECT  MAX(Faturatoplami) AS 'FaturaToplami' FROM  Fatura
+
+--GROUP BY komutu veritabanındaki verileri gruplara ayırmaya ve gruplar üzerinde aggregate işlemlerini gerçekleştirmeyi sağlar.
+--Maximum fatura toplamınını cari adına göre gruplu şekilde azalan sırada getiren sorgu;
+SELECT Cariadi, MAX(Faturatoplami) AS 'FaturaToplami' FROM  Fatura
+GROUP BY Cariadi
+ORDER BY Cariadi DESC
+
+--Minimum fatura toplamınını cari adına göre gruplu şekilde azalan sırada getiren sorgu;
+SELECT Cariadi, MIN(Faturatoplami) AS 'FaturaToplami' FROM  Fatura
+GROUP BY Cariadi
+ORDER BY Cariadi DESC
+
+--Ortalama fatura toplamını cari adına göre gruplu şekilde azalan sıraya getiren sorgu;
+SELECT  Cariadi, AVG(Faturatoplami) AS 'Fatura_Ort' 
+FROM  Fatura
+GROUP BY Cariadi
+ORDER BY Cariadi DESC
+
+--COUNT(1) demek 1. sütundaki verilere bak demek.
+--Toplam fatura sayısını getiren sorgu;
+SELECT COUNT(1) AS 'FaturaSayisi' FROM Fatura
