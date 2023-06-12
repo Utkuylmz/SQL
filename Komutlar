@@ -30,3 +30,37 @@ WHERE Cari_Adi  <> 'Ahmet'
 --Diger yolu;
 SELECT * FROM Fatura
 WHERE Cari_Adi != 'Ahmet'
+
+--DISTINCT Tabloda yinelenenleri teke düşürür.
+--Cari tablosundaki farklı şehirleri getiren sorgu;
+SELECT DISTINCT CariFaturaIl FROM Cari 
+
+--IN komutu, belirtilen değerlerin bir sütundaki değerlerle eşleşen herhangi bir kaydı döndürmek için kullanılır.
+--Uye tablosundan istenen isimleri getiren sorgu;
+SELECT * FROM  Uye
+Where adisoyadi IN ('Mustafa','Ferhat')
+
+--BETWEEN komutu, belirtilen iki değer arasındaki değerlere sahip olan kayıtları seçmek için kullanılır.
+--Fatura tablosunda belirli tarih aralığını getiren sorgu;
+SELECT * FROM  Fatura
+WHERE Faturatarihi BETWEEN '2022-12-01' AND '2023-03-01
+
+LIKE komutu, bir sütundaki değerlerin belirli bir kalıpla eşleşmesini kontrol etmek için kullanılır. 
+--Fatura tablosundan adi 'AK' ile başlayanları getiren sorgu;
+SELECT * FROM  Fatura
+WHERE Cariadi LIKE 'AK%'
+
+--Fatura tablosundan adi 'AK' ile bitenleri getiren sorgu;
+SELECT * FROM  Fatura
+WHERE Cariadi LIKE '%AK'
+
+--Fatura tablosundan adinda 'AK' geçenleri getiren sorgu;
+SELECT * FROM  Fatura
+WHERE Cariadi LIKE '%AK%'
+
+--Fatura tablosundaki ilk 10 kaydı getiren sorgu;
+SELECT TOP (10) * FROM Fatura
+
+--PERCENT tüm satır sayısının istenen yüzdesini getirir.
+--Fatura tablosundaki toplam satırların %20'sini getiren sorgu;
+SELECT TOP (20) PERCENT * FROM Fatura
