@@ -26,3 +26,22 @@ ORDER BY Cariadi DESC
 --COUNT(1) demek 1. sütundaki verilere bak demek.
 --Toplam fatura sayısını getiren sorgu;
 SELECT COUNT(1) AS 'FaturaSayisi' FROM Fatura
+
+--Customers tablosu ile Orders tablosunu CustomerID sütunu üzerinde birleştirmeye yarayan sorgu;
+SELECT Customers.CustomerName, Orders.OrderDate
+FROM Customers
+INNER JOIN Orders ON Customers.CustomerID = Orders.CustomerID
+
+--Ürün id'lerini eşleyerek ürün adlarının toplam satış tutarını getiren sorgu;
+SELECT Urun.urunadi, SUM(SiparisAll.Satis) AS TotalSatis 
+FROM Urun
+INNER JOIN SiparisAll ON Urun.urunid=SiparisAll.urunid
+GROUP BY Urun.urunadi
+
+--HAVING komutu GROUP BY komutu ile beraber kullanılır. Grup içinde filtre oluşturmaya yarar.
+--Ürün id'lerini eşleyerek ürün adlarından toplam satış tutarın 50000'i geçenleri getiren sorgu;
+SELECT Urun.urunadi, SUM(SiparisAll.Satis) AS TotalSatis 
+FROM Urun
+INNER JOIN SiparisAll ON Urun.urunid=SiparisAll.urunid
+GROUP BY Urun.urunadi
+HAVING SUM(SiparisAll.Satis)>50000
