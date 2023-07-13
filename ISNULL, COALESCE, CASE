@@ -1,0 +1,34 @@
+
+--null değerleri için kulanılan komutlardır.
+
+--ISNULL komutu, belirli bir alanın null olup olmadığını kontrol eder ve belirli bir değer veya ifade döndürür.
+--Siparişler tablosundaki her kayıt için sipariş tarihi sütununu kontrol eden ve null'sa N/A değerini döndüren sorgu,
+SELECT ISNULL(sipariştarihi, 'N/A') FROM siparişler
+
+--COALESCE komutu, ISNULL komutuna göre daha fazla işlemi yapabilir.
+--Birden çok değeri sorgulayabilir.
+--Ürünler tablosundaki her ürün için COALESCE komutunu kullanarak sonfiyat adında bir alan oluşturan ve bu alanı şu durumlara göre;
+   "Eğer indirimlifiyat alanı NULL değilse, indirimlifiyat değeri kullanılacak,
+    Eğer indirimlifiyat NULL ise, fiyat alanı üzerinden indirimoranı hesaplanır ve sonfiyat elde edilecek,
+    Eğer fiyat ve indirimlifiyat da NULL ise, normalfiyat değeri kullanılacak" getiren sorgu,
+SELECT
+    ürünadı,
+    COALESCE(indirimlifiyat, fiyat * (1 - indirimoranı), normalfiyat) AS sonfiyat
+FROM
+    ürünler
+
+--ISNULL ve COALESCE komutlarına göre daha yavaştır.
+--CASE WHEN komutu, koşullu bir ifade oluşturmak için kullanılır.
+--Her ürünadı için fiyat değerini kontrol eden ve eğer,
+   -Fiyat 10'dan küçükse kategoriyi 'Ucuz',
+   -Fiyat 10 ile 50 arasındaysa kategoriyi 'Orta', 
+   -Hiçbir koşul sağlanmazsa kategoriyi 'Pahalı' olarak belirleyen sorgu,
+SELECT
+    ürünadı,
+    CASE
+        WHEN fiyat < 10 THEN 'Ucuz'
+        WHEN fiyat >= 10 AND fiyat < 50 THEN 'Orta'
+        ELSE 'Pahalı'
+    END AS kategori
+FROM
+    ürünler
