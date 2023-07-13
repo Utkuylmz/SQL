@@ -1,0 +1,16 @@
+
+--Özdeş sütunları birleştirmek için kullanılırlar.
+
+--UNION ALL komutu, birden fazla SELECT ifadesini birleştirir ve bunu yaparken yinelenen kayıtları kaldırmaz.
+--Tüm iki tablo verisini almak istersek sütunlar aynı sayıda ve özdeş olmalıdır.
+--siparişler_2021 ve siparişler_2022 tablolarından alınan siparişleri birleştiren ve tüm sonuçları döndüren sorgu,
+SELECT * FROM siparişler_2021
+UNION ALL 
+SELECT * FROM siparişler_2022
+
+--UNION komutu, birden fazla SELECT ifadesini birleştirir ve bunu yaparken yinelenen kayıtları kaldırır.
+--Tüm iki tablo verisini almak istersek sütunlar aynı sayıda ve özdeş olmalıdır.
+--müşteriler tablosundan UK'deki müşterileri ve çalışanlar tablosundan UK'deki çalışanları seçen ve sonuçları birleştiren sorgu,
+SELECT * FROM müşteriler WHERE ülke = 'UK'
+UNION
+SELECT * FROM çalışanlar WHERE ülke = 'UK';
