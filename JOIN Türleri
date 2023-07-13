@@ -1,0 +1,38 @@
+
+--JOIN komutları, ilişkisel veritabanlarında birden fazla tabloyu birleştirmek ve ilişkiler aracılığıyla veri çekmek için kullanılan komutlardır.
+
+--INNER JOIN ile ortak verisi eşleşen kayıtlar getirilir.
+SELECT * FROM tablo1
+INNER JOIN tablo2 ON tablo1.sütun = tablo2.sütun
+
+--LEFT JOIN ile sol tabloyu baz alarak sağ tablodan veri birleştirmesi yapılır.
+--Sağ tablodan olan, sol tabloyla eşleşmeyen veriler null olarak döner.
+SELECT * FROM tablo1
+LEFT JOIN tablo2 ON tablo1.sütun = tablo2.sütun
+
+--LEFT JOIN ve LEFT OUTER JOIN arasında bir fark yoktur. İkisi de aynı anlama gelmektedir.
+SELECT * FROM tablo1
+LEFT OUTER JOIN tablo2 ON tablo1.sütun = tablo2.sütun
+
+--RIGHT JOIN ile sağ tabloyu baz alarak sol tablodan veri birleştirmesi yapılır.
+--Sol tablodan olan, sağ tabloyla eşleşmeyen veriler null olarak döner.
+SELECT * FROM tablo1
+RIGHT JOIN tablo2 ON tablo1.sütun = tablo2.sütun
+
+--RIGHT JOIN ve RIGHT OUTER JOIN arasında bir fark yoktur. İkisi de aynı anlama gelmektedir.
+SELECT * FROM tablo1
+RIGHT OUTER JOIN tablo2 ON tablo1.sütun = tablo2.sütun
+
+--FULL JOIN iki tablonun tüm kayıtlarını döndürür.
+--Eşleşmeyen alanlar null olarak doldurulur.
+SELECT * FROM tablo1
+FULL JOIN tablo2 ON tablo1.sütun = tablo2.sütun
+
+--FULL JOIN ve FULL OUTER JOIN arasında bir fark yoktur. İkisi de aynı anlama gelmektedir.
+SELECT * FROM tablo1
+FULL OUTER JOIN tablo2 ON tablo1.sütun = tablo2.sütun
+
+--CROSS JOIN iki tabloyu çaprazlama yöntemiyle birleştirir.
+--tablo1'deki her kaydı tablo2'nin tüm kayıtlarıyla eşleştiren sorgu,
+SELECT * FROM tablo1
+CROSS JOIN tablo2
