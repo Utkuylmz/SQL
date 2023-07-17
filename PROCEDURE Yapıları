@@ -1,0 +1,81 @@
+
+--Prosedürler veritabanı işlemlerini otomatikleştirmek ve tekrar eden görevleri gerçekleştirmek için kullanılan yapılardır.
+
+--Paremetresiz PROCEDURE kalıbı,
+ /*
+   CREATE PROCEDURE procedure_adı
+   AS
+   BEGIN
+         Sorgu
+   END
+   */
+
+--Çalışanlar tablosundaki çalışan sayısını döndüren bir PROCEDURE yapısı,
+CREATE PROCEDURE GetÇalışanSayısı
+AS
+BEGIN
+    SELECT COUNT(*) AS ÇalışanSayısı FROM Çalışanlar;
+END
+
+--Oluşturulan sorguyu çalıştırmak için, (İki format da aynıdır.)
+EXECUTE GetÇalışanSayısı
+EXEC GetÇalışanSayısı
+
+--Tek Parametreli PROCEDURE yapısı;
+--Çalışanlar tablosunda belirtilen bir departmana ait çalışanları döndüren bir SQL prosedürü, 
+CREATE PROCEDURE GetÇalışanlarınDepartmanı
+    @departmanAdı VARCHAR(50)
+AS
+BEGIN
+    SELECT * FROM Çalışanlar WHERE Departman = @departmanAdı
+END
+
+--PROCEDURE çalıştırmak için;
+EXEC GetÇalışanlarınDepartmanı
+EXEC GetÇalışanlarınDepartmanı @departmanAdı = 'Satış' //Satış departmanında olanları getirecek prosedürü çalıştırmak için.
+
+--Çok Parametreli PROCEDURE yapısı;
+--Belirli bir çalışanın maaşını güncellemek için kullanılan prosedür,
+CREATE PROCEDURE GetÇalışanMaaşGüncellemesi
+    @çalışanId INT,
+    @yeniMaaş DECIMAL(10,2),
+    @günceltarih DATE
+AS
+BEGIN
+    UPDATE Çalışanlar SET Maaş = @yeniMaaş, GüncelTarih = @günceltarih WHERE ÇalışanID = @çalışanId
+END
+
+--PROCEDURE çalıştırmak için;
+EXEC GetÇalışanMaaşGüncellemesi
+EXEC GetÇalışanMaaşGüncellemesi @çalışanId = 1001, @yeniMaaş = 5000.00, @günceltarih = '2023-07-17'
+
+--PROCEDURE öbeğini kontrol etmek için, sp_helptext 
+sp_helptext GetÇalışanMaaşGüncellemesi
+
+--Mevcut PROCEDUR yapısını değiştirmek için CREATE komutu yerine ALTER komutu yazarak istediğimiz değişikliği ekledikten sonra yapıyı değiştirebiliriz.
+ALTER PROCEDURE GetÇalışanlarınDepartmanı
+    @departmanAdı VARCHAR(50)
+AS
+BEGIN
+    SELECT * FROM Çalışanlar WHERE Departman = @departmanAd
+    ORDER BY Departman ASC 
+END
+
+--PROCEDURE yapısını silmek için,
+DROP PROCEDURE GetÇalışanlarınDepartmanı
+
+--ID'ye göre adı getiren PROCEDURE,
+CREATE PROCEDURE GetIDyegöreAd
+@Id int,
+@AD nvarchar(50) OUTPUT
+AS
+BEGIN
+	SELECT @AD = Ad FROM Kişiler 
+	WHERE ID = @Id
+END
+
+DECLARE @AD nvarchar(50)
+EXECUTE GetIDyegöreAd 1, @AD OUTPUT
+PRINT 'ADI = ' +@AD
+//OUTPUT sonucu dışarı aktarmak için kullanılır.
+//DECLARE komutu OUTPUT komutunu kullnadığımızda onun veri tipini belirtmek için kullanılır.
