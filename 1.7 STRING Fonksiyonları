@@ -1,1 +1,59 @@
 
+--STRING fonksiyonları, karakter dizileri üzerinde çeşitli işlemler yapmak için kullanılan fonksiyonlardır. 
+
+--CONCAT, komutu iki veya daha fazla karakter dizisini birleştirmek için kullanılır.
+SELECT CONCAT('Hello', ' ', 'World') AS ConcatenatedString;
+-- Çıktı: Hello World
+
+--LEN, bir karakter dizisinin uzunluğunu döndürmek için kullanılır.
+SELECT LEN('Hello World') AS StringLength;
+-- Çıktı: 11
+
+--SUBSTRING, bir karakter dizisinden belirli bir alt dizi almak için kullanılır.
+SELECT SUBSTRING('Hello World', 7, 5) AS SubstringResult;
+-- Çıktı: World
+
+--UPPER, bir karakter dizisini büyük harflere dönüştürmek için kullanılır.
+SELECT UPPER('Hello') AS UppercaseString;
+-- Çıktı: HELLO
+
+--LOWER, bir karakter dizisini küçük harflere dönüştürmek için kullanılır.
+SELECT LOWER('World') AS LowercaseString;
+-- Çıktı: world
+
+--REPLACE, bir karakter dizisinde belirli bir alt diziyi başka bir alt diziyle değiştirmek için kullanılır. 
+SELECT REPLACE('Hello World', 'World', 'Universe') AS ReplacedString;
+-- Çıktı: Hello Universe
+
+--LTRIM, bir karakter dizisinin solundaki boşlukları kaldırır.
+SELECT LTRIM('   Hello') AS TrimmedString;
+-- Çıktı: 'Hello'
+
+--RTRIM, bir karakter dizisinin sağındaki boşlukları kaldırır.
+SELECT RTRIM('Hello   ') AS TrimmedString;
+-- Çıktı: 'Hello'
+
+--REVERSE, bir karakter dizisini tersine çevirmek için kullanılan bir fonksiyondur. 
+SELECT REVERSE('Hello World') AS ReversedString;
+-- Çıktı: 'dlroW olleH'
+
+--LEFT, bir karakter dizisinden belirli bir sayıda karakteri sol taraftan alır.
+SELECT LEFT('Hello World', 5) AS LeftString;
+-- Çıktı: 'Hello'
+
+--RIGHT, bir karakter dizisinden belirli bir sayıda karakteri sağ taraftan alır.
+SELECT RIGHT('Hello World', 5) AS RightString;
+-- Çıktı: 'World'
+
+
+--CHARINDEX, bir karakter dizisi içinde belirli bir alt dizenin ilk karakterinin konumunu bulmak için kullanılan bir fonksiyondur. 
+SELECT CHARINDEX('llo', 'Hello World') AS StringPosition;
+-- Çıktı: 3
+
+--REPLICATE, belirli bir karakteri veya karakter dizisini belirli bir sayıda tekrarlamak için kullanılan bir fonksiyondur.
+SELECT REPLICATE('*', 5) AS ReplicatedString;
+-- Çıktı: '*****'
+
+--STUFF, bir karakter dizisinde belirli bir konumdan itibaren belirli bir uzunlukta karakterleri başka bir karakter dizisiyle değiştirmek veya eklemek için kullanılan bir fonksiyondur.
+SELECT STUFF('Hello World', 7, 5, 'Universe') AS ModifiedString;
+-- Çıktı: 'Hello Universe'
